@@ -1,0 +1,50 @@
+#!/bin/bash
+DBHOST=localhost
+DBNAME=yourname_wordpress
+DBUSER=yourname
+DBPASS=dbpasshere
+WPUSER=yourname
+WPPASS=passwordprere
+WPMAIL=yourname@example.com
+
+PWD=`pwd`
+DOMAIN=${PWD##*/}
+IFS='.'
+set -- ${DOMAIN}
+PREFIX=$1_
+IFS=','
+
+wp core download --locale=ja
+
+wp core config \
+   --dbname=${DBNAME} \
+   --dbuser=${DBUSER} \
+   --dbpass=${DBPASS} \
+   --dbhost=${DBHOST} \
+   --dbprefix=${PREFIX} \
+   --extra-php <<PHP
+    define( 'WP_DEBUG', true );
+    define( 'WP_DEBUG_LOG', true );
+    define( 'FS_METHOD', 'direct' );
+PHP
+
+wp core install \
+   --url=${DOMAIN} \
+   --title=${DOMAIN} \
+   --admin_user=${WPUSER} \
+   --admin_password=${WPPASS} \
+   --admin_email=${WPMAIL} 
+
+wp plugin install \
+   add-page-from-template \
+   advanced-custom-fields \
+   backwpup \
+   custom-post-type-permalinks \
+   custom-post-type-ui \
+   debug-bar \
+   debug-bar-console \
+   duplicate-post \
+   fg-debug-bar-rewrite-rules \
+   post-type-switcher \
+   show-current-template \
+   --activate
