@@ -33,7 +33,9 @@ wp core install \
    --title=${DOMAIN} \
    --admin_user=${WPUSER} \
    --admin_password=${WPPASS} \
-   --admin_email=${WPMAIL} 
+   --admin_email=${WPMAIL}
+
+wp core language install ja --activate
 
 wp plugin install \
    add-page-from-template \
@@ -48,3 +50,8 @@ wp plugin install \
    post-type-switcher \
    show-current-template \
    --activate
+
+wp rewrite structure '/archives/%post_id%'
+
+wp scaffold child-theme twentysixteen-child --parent_theme=twentysixteen
+wp theme activate twentysixteen-child
