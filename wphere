@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+
 # Returns domain part
 # It splits current directory and get the most child domain
 # example1.dev => example1
 # foo.bar.domain => foo
+
 function get_slug() {
   local PWD=`pwd`
   DOMAIN=${PWD##*/}
@@ -81,21 +83,20 @@ function wp_plugin() {
    --activate
 }
 
-SLUG=`get_slug`
-echo $SLUG
-DOMAIN=`get_domain`
-echo $DOMAIN
 
+SLUG=`get_slug`
+DOMAIN=`get_domain`
+echo 'Setting domain as '$DOMAIN
 DB_NAME=`get_dbname $SLUG`
-echo $DB_NAME
+echo 'Installing into '$DB_NAME' Database.'
 
 drop_database
 create_database
 wp_download
 wp_config
 wp_install
-# wp_plugin
 
+# wp_plugin
 
 exit 0;
 
