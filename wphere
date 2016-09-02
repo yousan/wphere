@@ -1,26 +1,54 @@
-#!/bin/bash
-DBHOST=localhost
-DBNAME=yourname_wordpress
-DBUSER=yourname
-DBPASS=dbpasshere
-WPUSER=yourname
-WPPASS=passwordprere
-WPMAIL=yourname@example.com
+#!/usr/bin/env bash
 
-PWD=`pwd`
-DOMAIN=${PWD##*/}
-IFS='.'
-set -- ${DOMAIN}
-PREFIX=$1_
-IFS=','
+# Returns domain part
+# It splits current directory and get the most child domain
+# example1.dev => example1
+# foo.bar.domain => foo
+function get_domain() {
+  local PWD=`pwd`
+  local DOMAIN=${PWD##*/}
+  local IFS='.'
+  set -- ${DOMAIN}
+  echo $1
+}
 
-wp core download --locale=ja
+function create_database() {
+  CMD="mysqladmin create -u${DB_USER} -p${DB_PASS} ${DB_NAME}"
+  echo $CMD
+}
 
-wp core config \
-   --dbname=${DBNAME} \
-   --dbuser=${DBUSER} \
-   --dbpass=${DBPASS} \
-   --dbhost=${DBHOST} \
+# if DB_NAME is not set, returns DB_USER + DOMAIN
+#
+#
+function get_dbname() {
+  if [ -z "${DB_NAME}" ]; then
+   DB_NAME=${DB_USER}_$1
+  fi
+  echo $DB_NAME
+}
+
+domain=`get_domain`
+echo $domain
+DB_NAME=`get_dbname $domain`
+echo $DB_NAME
+
+create_database
+
+exit 0;
+
+
+
+
+
+exit;
+
+#wp core download --locale=ja
+
+#wp core config \
+   --dbname=${DB_NAME} \
+   --dbuser=${DB_USER} \
+   --dbpass=${DB_PASS} \
+   --dbhost=${DB_HOST} \
    --dbprefix=${PREFIX} \
    --extra-php <<PHP
     define( 'WP_DEBUG', true );
@@ -28,15 +56,18 @@ wp core config \
     define( 'FS_METHOD', 'direct' );
 PHP
 
+#
+
+export DOMAIN=forced.l2tp.org
 wp core install \
    --url=${DOMAIN} \
    --title=${DOMAIN} \
-   --admin_user=${WPUSER} \
-   --admin_password=${WPPASS} \
-   --admin_email=${WPMAIL}
+   --admin_user=${WP_USER} \
+   --admin_password=${WP_PASS} \
+   --admin_email=${WP_MAIL}
 
 wp core language install ja --activate
-
+#
 wp plugin install \
    add-page-from-template \
    advanced-custom-fields \
@@ -50,8 +81,8 @@ wp plugin install \
    post-type-switcher \
    show-current-template \
    --activate
-
-wp rewrite structure '/archives/%post_id%'
-
-wp scaffold child-theme twentysixteen-child --parent_theme=twentysixteen
-wp theme activate twentysixteen-child
+#
+#wp rewrite structure '/archives/%post_id%'
+#
+#wp scaffold child-theme twentysixteen-child --parent_theme=twentysixteen
+#wp theme activate twentysixteen-child
