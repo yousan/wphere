@@ -4,17 +4,28 @@
 # It splits current directory and get the most child domain
 # example1.dev => example1
 # foo.bar.domain => foo
-function get_domain() {
+function get_slug() {
   local PWD=`pwd`
-  local DOMAIN=${PWD##*/}
+  DOMAIN=${PWD##*/}
   local IFS='.'
   set -- ${DOMAIN}
   echo $1
 }
 
+function get_domain() {
+  local PWD=`pwd`
+  DOMAIN=${PWD##*/}
+  echo ${DOMAIN}
+}
+
 function create_database() {
-  CMD="mysqladmin create -u${DB_USER} -p${DB_PASS} ${DB_NAME}"
-  echo $CMD
+  CMD="mysqladmin -u${DB_USER} -p${DB_PASS} -h${DB_HOST} create ${DB_NAME}"
+  $CMD
+}
+
+function drop_database() {
+  CMD="mysqladmin -u${DB_USER} -p${DB_PASS} -h${DB_HOST} drop ${DB_NAME}"
+  $CMD
 }
 
 # if DB_NAME is not set, returns DB_USER + DOMAIN
@@ -27,48 +38,35 @@ function get_dbname() {
   echo $DB_NAME
 }
 
-domain=`get_domain`
-echo $domain
-DB_NAME=`get_dbname $domain`
-echo $DB_NAME
+function wp_download() {
+  wp core download --locale=ja
+}
 
-create_database
-
-exit 0;
-
-
-
-
-
-exit;
-
-#wp core download --locale=ja
-
-#wp core config \
-   --dbname=${DB_NAME} \
-   --dbuser=${DB_USER} \
-   --dbpass=${DB_PASS} \
-   --dbhost=${DB_HOST} \
-   --dbprefix=${PREFIX} \
-   --extra-php <<PHP
-    define( 'WP_DEBUG', true );
-    define( 'WP_DEBUG_LOG', true );
-    define( 'FS_METHOD', 'direct' );
+function wp_config() {
+  wp core config \
+     --dbname=${DB_NAME} \
+     --dbuser=${DB_USER} \
+     --dbpass=${DB_PASS} \
+     --dbhost=${DB_HOST} \
+     --dbprefix=${WP_PREFIX} \
+     --extra-php <<PHP
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'FS_METHOD', 'direct' );
 PHP
+}
 
-#
+function wp_install() {
+  wp core install \
+     --url=${DOMAIN} \
+     --title=${DOMAIN} \
+     --admin_user=${WP_USER} \
+     --admin_password=${WP_PASS} \
+     --admin_email=${WP_MAIL}
+}
 
-export DOMAIN=forced.l2tp.org
-wp core install \
-   --url=${DOMAIN} \
-   --title=${DOMAIN} \
-   --admin_user=${WP_USER} \
-   --admin_password=${WP_PASS} \
-   --admin_email=${WP_MAIL}
-
-wp core language install ja --activate
-#
-wp plugin install \
+function wp_plugin() {
+  wp plugin install \
    add-page-from-template \
    advanced-custom-fields \
    backwpup \
@@ -81,6 +79,28 @@ wp plugin install \
    post-type-switcher \
    show-current-template \
    --activate
+}
+
+SLUG=`get_slug`
+echo $SLUG
+DOMAIN=`get_domain`
+echo $DOMAIN
+
+DB_NAME=`get_dbname $SLUG`
+echo $DB_NAME
+
+drop_database
+create_database
+wp_download
+wp_config
+wp_install
+# wp_plugin
+
+
+exit 0;
+
+#  wp core language install ja --activate
+#wp core language install ja --activate
 #
 #wp rewrite structure '/archives/%post_id%'
 #
