@@ -2,6 +2,11 @@
 
 Download and install WordPress into current directory.
 
+```
+wp core download
+wp core config
+wp core install
+```
 
 # How to use
 
@@ -21,20 +26,26 @@ $ chmod +x ~/sh/wpehre
 ```
 
 ## Create a document root directory such as public_html/example.dev 
+
 ```
 $ mkdir ~/public_html/example.dev
 $ cd ~/public_html/example.dev/
+```
 
 ## Copy and rename .env.sample to .env
+
 ```
 $ cp ~/git/wphere/.env.sample ./.env
 ```
+
 ## Write DB informations to .env
+
 ```
 $ vi .env
 ```
 
 ## Call wphere
+
 ```
 $ wphere
 ```
