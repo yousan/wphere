@@ -1,3 +1,22 @@
+# 目的
+WordPressを簡単にインストールするためのスクリプトです。
+WP-CLIでWordPressの初期設定をする際のコマンドをまとめています。
+データベース設定などの情報を.envファイルに書いておきwphereを実行すればWordPressのインストールが完了します。
+
+# 使い方
+1. wphereをダウンロードします。
+ex.) `git clone https://github.com/yousan/wphere.git ~/git/`
+2. ドキュメントルートとなるディレクトリを作成します。
+ex.) `mkdir ~/public_html/example.com`
+3. .env.sampleを.envとしてコピーしてきます。
+ex.) `cp ~/git/wphere/.env.sample ~/public_html/example.com`
+4. .envファイルを編集します。
+5. wphereを実行します。
+ex.) `~/git/wphere/wphere`
+ 
+# 要件
+WP-CLI 0.24 以上をインストールしてください。
+
 # What's this?
 
 Download and install WordPress into current directory.
