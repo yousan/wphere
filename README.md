@@ -9,7 +9,7 @@ ex.) `git clone https://github.com/yousan/wphere.git ~/git/`
 2. ドキュメントルートとなるディレクトリを作成します。
 ex.) `mkdir ~/public_html/example.com`
 3. .env.sampleを.envとしてコピーしてきます。
-ex.) `cp ~/git/wphere/.env.sample ~/public_html/example.com`
+ex.) `cp ~/git/wphere/.env.sample ~/public_html/example.com/.env`
 4. .envファイルを編集します。
 5. wphereを実行します。
 ex.) `~/git/wphere/wphere`

@@ -83,7 +83,16 @@ function wp_plugin() {
    --activate
 }
 
+function source_env() {
+ if [ -f .env ]; then
+   source .env
+ else
+   echo 'Error: .env file not found.'
+   exit 1
+ fi
+}
 
+source_env
 SLUG=`get_slug`
 DOMAIN=`get_domain`
 echo 'Setting domain as '$DOMAIN
