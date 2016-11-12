@@ -18,6 +18,7 @@ before_script:
  - git clone https://github.com/yousan/damp.git
  - cd damp
  - docker-compose up -d
- - mkdir -p ~/public_html/wptest.dev
+ - sudo mkdir ~/public_html/wptest.dev
+ - sudo chown -R travis:travis ~/public_html
  - cd ~/public_html/wptest.dev
  - ~/wphere
