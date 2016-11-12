@@ -2,13 +2,11 @@ language: bash
 
 sudo: required
 
-services:
- - php
- ｰ docker
+services: docker
 
-php:
-- '5.5'
-- '5.3'
+#php:
+# - '5.5'
+# - '5.3'
 notifications:
   slack:
     rooms:
