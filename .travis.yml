@@ -19,6 +19,10 @@ before_script:
  - cd damp
  - docker-compose up -d
  - cd ../
+ - mkdir ~/bin/
+ - cd ~/bin
+ - curl -O wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+ - chmod +x wp
  - sudo chown -R travis:travis ~/public_html
 
 script:
