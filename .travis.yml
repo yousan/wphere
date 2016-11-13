@@ -21,4 +21,5 @@ before_script:
  - sudo mkdir ~/public_html/wptest.dev
  - sudo chown -R travis:travis ~/public_html
  - cd ~/public_html/wptest.dev
+ - cp ~/.env.sample ./
  - ~/wphere
