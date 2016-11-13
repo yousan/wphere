@@ -18,8 +18,9 @@ before_script:
  - git clone https://github.com/yousan/damp.git
  - cd damp
  - docker-compose up -d
+ - cd ../
  - sudo chown -R travis:travis ~/public_html
 
 script:
  - pwd -P
- - ~/bin/test.sh
+ - ./bin/test.sh
