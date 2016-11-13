@@ -21,4 +21,5 @@ before_script:
  - sudo chown -R travis:travis ~/public_html
 
 script:
+ - pwd -P
  - ~/bin/test.sh
