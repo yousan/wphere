@@ -27,4 +27,5 @@ before_script:
 
 script:
  - env
- - ./bin/test.sh
+ - ls -lat
+ - ./wphere/bin/test.sh
