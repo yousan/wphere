@@ -8,6 +8,7 @@ services: docker
 # - '5.5'
 # - '5.3'
 notifications:
+  email: false
   slack:
     rooms:
       secure: M2XK8WJm1IrH66FsNHaf4wTtY2gxEUwitGSK0wB437qle+UeBPQq6pLhLtRKU87F7P8nibsWOGcpnqgZtUama4fSHq3EmsaT6O2fMGeVJX6/BJLDiqlHIp1W0dGsJ9Ly6RVvJIh23qWjTTOaF02BGgttFHkUrTXx89kNl6q9dnWtuH1J5vBRFKry5ec51qRv0n06LJ0ETP0jgvC6afnug/DuNjLUxfVX5wqKUUZhkMSoLfeISlVdrKahN+3SiIIa/kKA/tAaS/LuBrYKwHhSVrq69/mhVe1491KSgKHOy2tXJryBJkAfgeV8lxqcBlufcgz7zdAuNs5AkQitvturve017lpvVenHE0+cCj3n82BrqNwdH3n+dTxRF0vho8pJPxwg1ZVwM+Gt+prU/lw4AhDZIE644TLpdx7f+uc82Vp1khffpTPBBUupKrpJjiv9ezxJHCO3tmxkSYo3qIno1KUrIiqZOtszbnoQ7nJrZ1Y9JX777nR77K3f6mnhlE2tsNwXHeNxgegoqOgbZMweapu5eu/6OwTJ0CZhHvr/WnL/SCI604kxm5I3dj+cDNx1mgDC1yFmdbo3E5hcJcmoUwHZR+USLq3JOR9A6JqDffVMalocQKOHZPOHRyEfPtj/DuJQCGpCutKtF7noMnro5DEGWvyELU5UrJE0q5YVMI4=
