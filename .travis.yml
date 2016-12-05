@@ -15,7 +15,7 @@ notifications:
 
 
 before_script:
- - sudo killall dnsmasq
+ - sudo pkill dnsmasq
  - git clone https://github.com/yousan/damp.git
  - cd damp
  - docker-compose up -d
