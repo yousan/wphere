@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yousan/wphere.svg?branch=master)](https://travis-ci.org/yousan/wphere)
+
 # 目的
 WordPressを簡単にインストールするためのスクリプトです。
 WP-CLIでWordPressの初期設定をする際のコマンドをまとめています。
