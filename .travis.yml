@@ -18,6 +18,7 @@ notifications:
 before_script:
  - ps auxww | grep mysql
  - sudo killall mysqld
+ - sleep 10
  - ps auxww | grep mysql
  - ls -lat
  - git clone https://github.com/yousan/damp.git
