@@ -1,4 +1,5 @@
-language: bash
+# @link ahttps://github.com/travis-ci/travis-ci/issues/4090#issuecomment-184864134
+language: php
 
 sudo: required
 
@@ -15,9 +16,10 @@ notifications:
 
 
 before_script:
-# - ps auxww | grep dnsmasq
-# - sudo killall dnsmasq
- - pwd -P
+ - ps auxww | grep mysql
+ - sudo killall mysqld
+ - sleep 10
+ - ps auxww | grep mysql
  - ls -lat
  - git clone https://github.com/yousan/damp.git
  - cd damp; docker-compose up -d
