@@ -18,11 +18,8 @@ before_script:
 # - ps auxww | grep dnsmasq
 # - sudo killall dnsmasq
  - git clone https://github.com/yousan/damp.git
- - cd damp
- - docker-compose up -d
- - cd ../
- - mkdir ~/bin/
- - cd ~/bin
+ - cd damp; docker-compose up -d
+ - mkdir ~/bin/; cd ~/bin
  - curl -o wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
  - chmod +x wp
  - sudo chown -R travis:travis ~/public_html
