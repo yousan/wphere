@@ -30,4 +30,5 @@ before_script:
 script:
  - env
  - ls -lat
- - ./git/wphere/bin/test.sh
+ - cd ${TRAVIS_BUILD_DIR} # /home/travis/build/yousan/wphere
+ - ./bin/test.sh
