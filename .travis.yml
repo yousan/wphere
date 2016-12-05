@@ -28,5 +28,4 @@ before_script:
 script:
  - env
  - ls -lat
- - find ./
  - ./git/wphere/bin/test.sh
