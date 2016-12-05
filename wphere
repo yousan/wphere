@@ -84,8 +84,8 @@ function wp_plugin() {
 function source_env() {
  if [ -f .env ]; then
    source .env
-# else if [ -f .htenv ]; then
-#   source ./.htenv
+ elif [ -f .htenv ]; then
+   source ./.htenv
  else
    echo 'Error: .env or .htenv file not found.'
    exit 1
