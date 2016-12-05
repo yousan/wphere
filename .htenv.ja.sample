@@ -1,0 +1,17 @@
+# ファイルは .htenv という名前で保存してください
+# インストールが終わったら ** 必ず ** このファイルは削除してください。
+
+# データベースへの接続情報です。
+DB_USER=username
+DB_PASS=password
+DB_HOST=localhost
+# 空の場合、wphereを実行した現在のディレクトリから自動で決定されます
+# ex.) ~/public_html/example.dev => example_
+DB_NAME=
+
+# WordPressで追加される初期ユーザです。パスワードは後で変更してください。
+WP_USER=username
+WP_MAIL=username@example.com
+WP_PASS=password
+WP_PREFIX=wp_
+
