@@ -3,6 +3,10 @@
 set -ex
 
 TESTDIR=~/public_html/example.dev
+if [ -d $TESTDIR ]; then
+  rm -rf $TESTDIR
+fi
+
 
 mkdir -p ${TESTDIR}
 cd -- "$(dirname "$BASH_SOURCE")"

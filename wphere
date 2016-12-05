@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -xe
 
 # Returns domain part
 # It splits current directory and get the most child domain
@@ -21,8 +20,7 @@ function get_domain() {
 }
 
 function create_database() {
-  CMD="mysqladmin -u${DB_USER} -p${DB_PASS} -h${DB_HOST} create ${DB_NAME}"
-  $CMD
+  echo 'CREATE DATABASE '${DB_NAME}';' | MYSQL_PWD=${DB_PASS} mysql -h ${DB_HOST} -u ${DB_USER}
 }
 
 function drop_database() {
