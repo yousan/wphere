@@ -26,5 +26,5 @@ before_script:
  - cd ~
 
 script:
- - pwd -P
+ - env
  - ./bin/test.sh
