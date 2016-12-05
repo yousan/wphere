@@ -23,6 +23,7 @@ before_script:
  - curl -o wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
  - chmod +x wp
  - sudo chown -R travis:travis ~/public_html
+ - cd ~
 
 script:
  - pwd -P
