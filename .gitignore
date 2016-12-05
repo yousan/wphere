@@ -1,8 +1,9 @@
 .env
+.DS_Store
 *.tgz
 *.phar
 *.phar.asc
 php_version_tags.php
 behat.yml
-vendor
+/vendor
 composer.lock

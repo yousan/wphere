@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 # Returns domain part
 # It splits current directory and get the most child domain
 # example1.dev => example1
@@ -21,13 +20,12 @@ function get_domain() {
 }
 
 function create_database() {
-  CMD="mysqladmin -u${DB_USER} -p${DB_PASS} -h${DB_HOST} create ${DB_NAME}"
-  $CMD
+  echo 'CREATE DATABASE '${DB_NAME}';' | MYSQL_PWD=${DB_PASS} mysql -h ${DB_HOST} -u ${DB_USER}
 }
 
 function drop_database() {
-  CMD="mysqladmin -u${DB_USER} -p${DB_PASS} -h${DB_HOST} drop ${DB_NAME}"
-  $CMD
+  # @link http://qiita.com/e_tei/items/bbfc90bfae28799d2176
+  echo 'DROP DATABASE IF EXISTS '${DB_NAME}';' | MYSQL_PWD=${DB_PASS} mysql -h ${DB_HOST} -u ${DB_USER}
 }
 
 # if DB_NAME is not set, returns DB_USER + DOMAIN
@@ -86,8 +84,10 @@ function wp_plugin() {
 function source_env() {
  if [ -f .env ]; then
    source .env
+ elif [ -f .htenv ]; then
+   source ./.htenv
  else
-   echo 'Error: .env file not found.'
+   echo 'Error: .env or .htenv file not found.'
    exit 1
  fi
 }
