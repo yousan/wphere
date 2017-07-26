@@ -18,7 +18,7 @@ WP_VERSION=${5-latest}
 INSTALL_DIR=${6-./}
 
 if ! [ -x wp ]; then
-  curl -o wp -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+  curl -sSl -o wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
   chmod +x wp
 fi
 
