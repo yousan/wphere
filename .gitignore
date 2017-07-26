@@ -6,4 +6,4 @@
 php_version_tags.php
 behat.yml
 /vendor
-composer.lock
+composer.lock.idea/
