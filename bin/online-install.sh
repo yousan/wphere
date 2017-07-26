@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# run curl -sSL -o - https://raw.githubusercontent.com/yousan/wphere/develop/bin/online-install.sh | \
+# bash -s 1 2 3 4 5
+
 set -xe
 
 if [ $# -lt 3 ]; then
@@ -14,7 +17,9 @@ DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 INSTALL_DIR=${6-./}
 
-if [ -x wp ]; then
+if ! [ -x wp ]; then
   curl -o wp -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
   chmod +x wp
 fi
+
+echo 'ok'
