@@ -7,3 +7,4 @@ php_version_tags.php
 behat.yml
 /vendor
 composer.lock.idea/
+.idea/
